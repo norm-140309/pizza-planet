@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  //Added a comment.
   export default {
     methods: {
       goToMenu() {
