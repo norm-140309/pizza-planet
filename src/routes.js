@@ -8,7 +8,15 @@ import OrderingGuide from './components/OrderingGuide.vue'
 import Admin from './components/Admin.vue'
 
 export const routes = [
-    { path: '/', component: Home },
+    { path: '/', 
+      name: 'homeLink',
+      components: { 
+        default: Home, 
+        'ordering-guide': OrderingGuide,
+        'delivery': Delivery,
+        'history': History
+      }
+    },
     { path: '/menu', component: Menu },
     { path: '/about', component: About, children: [
         { path: '/contact', component: Contact},
