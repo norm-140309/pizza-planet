@@ -13,9 +13,9 @@
               <th>Remove From Menu</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-for="item in getMenuItems">
             <tr>
-              <td>Margherita</td>
+              <td>{{item.name}}</td>
               <td><button class="btn btn-outline-danger btn-sm">x</button></td>
             </tr>
           </tbody>
@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <h3>Current Orders</h3>
+        <h3>Current Orders: {{numberOfOrders}}</h3>
         <table class="table table-sm">
           <thead class="thead-light">
             <tr>
@@ -66,6 +66,14 @@
     components: {
       ppNewPizza: NewPizza,
       ppLogin: Login
+    },
+    computed: {
+      getMenuItems() {
+        return this.$store.state.menuItems
+      },
+      numberOfOrders() {
+        return this.$store.getters.numberOfOrders
+      }
     },
     beforeRouteLeave: (to, from, next) => {
       if(confirm("Have you remembered to log out?") == true) {
