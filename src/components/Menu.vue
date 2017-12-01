@@ -55,10 +55,12 @@
           Order Total: 
           <span> 9.95 </span>
         </p>
-        <button class="btn btn-success btn-block">Place Order</button>
+        <button class="btn btn-success btn-block"
+          @click="addNewOrder"
+        >Place Order</button>
       </div>
       <div v-else>
-        <p>{{ cartText }}</p>
+        <p>{{ cartText }} | Number of orders: {{this.$store.state.orders}}</p>
       </div>
     </div>
   </div>
@@ -98,6 +100,11 @@ export default {
     },
     removeFromCart(item) {
       this.cart.splice(this.cart.indexOf(item), 1);
+    },
+    addNewOrder() {
+      this.$store.commit('addOrder', this.cart)
+      this.cart = []
+      this.cartText = 'Thank you, your order has been placed.'
     }
   }
 };
